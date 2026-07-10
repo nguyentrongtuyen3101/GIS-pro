@@ -1,0 +1,62 @@
+.login-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-gate__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 122, 26, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(255, 122, 26, 0.12), transparent 50%),
+    var(--color-bg);
+  filter: blur(2px);
+}
+
+.login-gate__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 380px;
+  margin: 20px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-elevated);
+}
+
+.login-gate__title {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.login-gate__title span {
+  color: var(--color-orange);
+}
+
+.login-gate__subtitle {
+  margin: 0 0 24px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.login-gate__submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.login-gate__error {
+  color: var(--color-danger);
+  font-size: 13px;
+  margin: -6px 0 14px;
+}

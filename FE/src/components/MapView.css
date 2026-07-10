@@ -1,0 +1,105 @@
+.map-view {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg);
+}
+
+.map-canvas {
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg);
+}
+
+/* Lọc màu tile OSM (vốn nền sáng) cho gần với theme đen của app */
+.map-canvas .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9) saturate(0.6);
+}
+
+.map-canvas .leaflet-marker-icon.pin-icon,
+.map-canvas .leaflet-tooltip {
+  filter: none;
+}
+
+.leaflet-tooltip {
+  background: var(--color-bg-elevated-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 12px;
+  box-shadow: var(--shadow-elevated);
+}
+
+.leaflet-control-zoom a {
+  background: var(--color-bg-elevated) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-border) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  color: var(--color-orange) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(13, 13, 13, 0.7) !important;
+  color: var(--color-text-muted) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--color-text-muted) !important;
+}
+
+.map-search {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 76px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  max-width: 480px;
+}
+
+.map-search input {
+  flex: 1;
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-elevated);
+}
+
+.map-search button {
+  padding: 10px 18px;
+}
+
+.map-search__error {
+  position: absolute;
+  top: 62px;
+  left: 16px;
+  z-index: 1000;
+  background: var(--color-bg-elevated-2);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.map-locate-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-orange);
+  font-size: 18px;
+  box-shadow: var(--shadow-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-locate-btn:hover:not(:disabled) {
+  border-color: var(--color-orange);
+}
