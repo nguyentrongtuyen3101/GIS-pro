@@ -16,8 +16,8 @@ dữ liệu trùng lặp.
 
 ```
 .
-├── server/      # Backend — Express + Prisma (MongoDB)
-└── client/      # Frontend — React
+├── BE/      # Backend — Express + Prisma (MongoDB)
+└── FE/      # Frontend — React
 ```
 
 > Nếu cấu trúc thư mục thực tế của bạn đặt tên khác (VD `backend/`, `web/`),
@@ -69,6 +69,123 @@ npm run dev
 Frontend mặc định chạy tại `http://localhost:5173` (Vite) hoặc `http://localhost:3000`
 (Create React App) — xem log trong terminal để biết chính xác cổng đang chạy.
 
+
+## Hướng dẫn sử dụng
+ 
+### 1. Đăng nhập / Đăng ký
+ 
+Màn hình đầu tiên khi vào trang web là nhập username. Nếu username đã tồn
+tại trước đó, hệ thống coi như đăng nhập; nếu chưa, một tài khoản mới sẽ
+được tạo tự động (đăng ký).
+ 
+![Đăng nhập / Đăng ký](images/image.png)
+ 
+### 2. Màn hình chính
+ 
+Sau khi đăng nhập, màn hình chính gồm 2 phần: **Sidebar** bên trái và
+**bản đồ** bên phải.
+ 
+![Màn hình chính](images/image-1.png)
+ 
+### 3. Sidebar — danh sách địa điểm đã lưu
+ 
+Sidebar hiển thị danh sách các địa điểm user đã lưu trước đó.
+ 
+![Sidebar](images/image-2.png)
+ 
+### 4. Bản đồ — đánh dấu địa điểm
+ 
+Bản đồ đánh dấu các địa điểm tương ứng với danh sách hiển thị ở sidebar.
+ 
+![Bản đồ đánh dấu địa điểm](images/image-3.png)
+ 
+### 5. Tìm kiếm địa điểm trên bản đồ
+ 
+Phía trên bên trái màn hình bản đồ có thanh tìm kiếm để tra cứu địa điểm.
+ 
+![Thanh tìm kiếm](images/image-4.png)
+ 
+### 6. Định vị vị trí hiện tại
+ 
+Phía trên bên phải màn hình bản đồ có icon định vị — bấm vào sẽ chuyển bản
+đồ đến vị trí hiện tại của user.
+ 
+![Định vị](images/image-5.png)
+ 
+### 7. Chọn địa điểm từ Sidebar
+ 
+Khi bấm vào 1 địa điểm ở sidebar, bản đồ sẽ tự động chuyển đến địa điểm đó.
+ 
+![Chọn địa điểm từ sidebar](images/image-6.png)
+ 
+### 8. Tìm địa điểm gần 1 vị trí
+ 
+Trong các trường hợp sau:
+ 
+- Click vào 1 địa điểm trên sidebar
+- Click vào 1 địa điểm được đánh dấu trên bản đồ
+- Click vào 1 địa điểm vừa tìm kiếm
+- Click vào 1 vị trí bất kỳ không được đánh dấu trên bản đồ
+> → **Kết quả:** Sidebar sẽ hiện 1 form để tìm các địa điểm **đã lưu**
+> trước đó, cách vị trí user vừa chọn trong khoảng cách (đơn vị mét) mà
+> user tự nhập.
+ 
+![Tìm địa điểm gần](images/image-7.png)
+ 
+### 9. Lưu địa điểm từ kết quả tìm kiếm
+ 
+Nếu chọn 1 địa điểm sau khi tìm kiếm (địa điểm đã được đánh dấu sẵn trên
+bản đồ), sidebar sẽ hiện form lưu địa điểm — **tên địa điểm không thể
+chỉnh sửa** trong trường hợp này.
+ 
+![Lưu địa điểm từ tìm kiếm](images/image-8.png)
+ 
+### 10. Lưu địa điểm tự chọn (không qua tìm kiếm)
+ 
+Nếu user click ngẫu nhiên 1 vị trí trên bản đồ mà không được đánh dấu sẵn,
+sidebar sẽ hiện form lưu địa điểm — trong trường hợp này **user có thể tự
+chỉnh sửa tên địa điểm**.
+ 
+![Lưu địa điểm tự chọn](images/image-9.png)
+ 
+### 11. Trạng thái đồng bộ — mất mạng
+ 
+Nếu mất mạng lúc đang lưu, bản ghi sẽ hiển thị trạng thái **Đang đồng bộ**,
+đồng thời header hiện thông báo mất kết nối.
+ 
+![Mất mạng](images/image-10.png)
+ 
+### 12. Trạng thái đồng bộ — server lỗi
+ 
+Nếu client vẫn còn mạng nhưng server bị lỗi/ngừng hoạt động, bản ghi sẽ
+hiển thị trạng thái **Lỗi đồng bộ**. Sau khi server kết nối trở lại, user có
+thể bấm để tự thử lại (retry) thủ công, hoặc hệ thống sẽ tự động retry sau
+mỗi 20 giây.
+ 
+![Server lỗi](images/image-11.png)
+ 
+### 13. Phát hiện nghi ngờ trùng
+ 
+Khi user tự chọn 1 vị trí không được đánh dấu để lưu, nếu tên địa điểm quá
+giống với 1 địa điểm đã có và khoảng cách đủ gần, hệ thống sẽ hiện thông
+báo ở icon cạnh tên user (góc trên bên phải). Bấm vào icon đó sẽ mở 1 modal
+hiển thị danh sách các nhóm nghi ngờ trùng. Với mỗi nhóm, user có 2 lựa
+chọn:
+ 
+- Chọn 1 địa điểm muốn giữ lại, đồng ý xóa các địa điểm còn lại trong nhóm
+- Chọn "không trùng" — các địa điểm trong nhóm được xem là riêng biệt
+![Danh sách nghi ngờ trùng](images/image-12.png)
+ 
+![Xử lý nhóm trùng](images/image-13.png)
+ 
+### 14. Thêm tài khoản mới
+ 
+Bấm vào tên user ở góc trên bên phải màn hình, một menu sẽ hiện xuống —
+chọn **Thêm tài khoản** để quay về màn hình đăng nhập/đăng ký ban đầu.
+ 
+![Thêm tài khoản](images/image-14.png)
+ 
+
 ## Tóm tắt các API chính (Backend)
 
 | Method | Endpoint | Mô tả |
@@ -97,53 +214,3 @@ thử từng request.
   `FE/.env` có khớp với cổng backend đang chạy không, và CORS đã bật ở
   backend cho phép origin của frontend.
 
-## Hướng dẫn sử dụng trang web
-
-**Đầu tiên khi vào trang web sẽ là màn hình nhập username nếu đã có user name trước đó sẽ là đăng nhập còn ngược lại sẽ alf đang ký**
-![login](images/image.png)
-
-**Sau khi login xong sẽ lag màn hình chính của web gồm 2 phần chính là sidebar bên trái và màn hình map bên phải**
-![home](images/image-1.png)
-
-**Sidebar bên trái sẽ hiển thị danh sách các địa điểm user đã lưu trước đó**
-![sidebar](images/image-2.png)
-
-**Tại màn hình map cũng sẽ đánh dấu các địa điểm tương tự như danh sách địa điểm hiển thị ở sidebar**
-![map](images/image-3.png)
-
-**Tại phía trên bên trai màn hình map chó thanh tìm kiếm để có thể tra cứu địa điểm muốn tìm kiếm**
-![map](images/image-4.png)
-
-**Tại phía trên bên phải màn hình map là icon khi bấm vào sẽ chuyển map đến vị trí hiện tại user đang đứng**
-![định vị](images/image-5.png)
-
-**Khi bấm vào một địa điểm ở sidebar map sẽ tự chuyển đến địa điểm đó**
-![map](images/image-6.png)
-
-**Trong các trường hợp sau**
-- click vào 1 địa điểm trên sidebar
-- click vào 1 địa điểm được đánh dấu trên map
-- click vào 1 địa điểm vừa tìm kiếm
-- click vào 1 địa điểm bất kỳ không được đánh giấu trên map
-> → **Kết quả:** Sidebar sẽ hiện lên một form để tìm các địa điểm ĐÃ LƯU trước đó cách địa điểm mà user vừa chọn tùy vào khoảng cách (đơn vị met) mà user nhập vào.
-![neal](images/image-7.png)
-
-**Nếu chọn một địa điểm sau tìm kiếm và được đánh dấu trên map thì sidebar sẽ hiển thị một form để lưu địa điểm và user không thể chỉnh sửa tên địa điểm khi lưu**
-![create](images/image-8.png)
-
-**Nếu user không tìm kiếm mà click ngẫu nhiên một vị trí trên map mà không được đánh dấu thì sidebar sẽ hiện form lưu nhưng có thể cho user chỉnh sửa tên địa điểm khi lưu**
-![create random](images/image-9.png)
-
-**Trong trường hợp khi lưu bị mất mạng bản ghi địa điểm sẽ hiển thị trạng thái Đang Đồng Bộ và trên header sẽ có thông báo mết kết nối**
-![mất mạng](images/image-10.png)
-
-**Trong trong trường hợp phía client ổn định nhưng phía server bị chết thfi bản ghi địa chỉ sẽ hiển thị trạng thái Lỗi Đồng Bộ và sau khi server kết nối trở lại user có thể click để tự retry hoặc sau 20s web sẽ tự động retry để lưu bản ghi và đồng bộ**
-![chết server](images/image-11.png)
-
-**Trong trường hợp user tự chọn địa điểm ko được đánh dấu nếu các địa điểm có tên quá giống nhau và khoảng cách đủ gần thì sẽ có thông báo ở icon gần tên user ở góc trên bên phải màn hình khi user click vào đó sẽ mở ra 1 modal và hiển thị danh sách các nhóm có nghi vấn trùng, khi này user có 2 lựa chọn cho mỗi nhóm trùng**
-- chọn 1 địa điểm muốn giữ lại và đồng ý xóa các địa điểm trùng còn lại của nhóm.
-- chọn không trùng và các địa điểm sẽ được xem là các địa điểm riêng biệt.
-![gần](images/image-12.png)![xóa trùng](images/image-13.png)
-
-**Khi muốn thêm tài khoản mới hãy bấm vào tên của bạn ở góc trên bên phải màn hình và nó sẽ có một lựa chọn hiện xuống và hãy click vào đó để nó đưa bạn đến màn hình đầu tiên**
-![thêm acc](images/image-14.png)
