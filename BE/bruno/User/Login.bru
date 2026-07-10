@@ -1,0 +1,19 @@
+meta {
+  name: Login
+  type: http
+}
+
+post {
+  url: {{baseUrl}}/users/login
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "pep_nguyen"
+  }
+}

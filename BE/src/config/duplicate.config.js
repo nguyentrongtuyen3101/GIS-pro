@@ -1,0 +1,12 @@
+
+export const DUPLICATE_NAME_SIMILARITY_THRESHOLD = Number(
+  process.env.DUPLICATE_NAME_SIMILARITY_THRESHOLD ?? 0.8
+); 
+
+export const DUPLICATE_DISTANCE_METERS = Number(
+  process.env.DUPLICATE_DISTANCE_METERS ?? 50
+); 
+
+export const EXACT_MATCH_DISTANCE_METERS = Number(
+  process.env.EXACT_MATCH_DISTANCE_METERS ?? 3
+);

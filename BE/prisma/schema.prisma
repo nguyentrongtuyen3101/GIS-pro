@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  username   String   @unique
+  createdAt  DateTime @default(now())
+  places     Place[]  @relation("UserToPlaces")
+}
+
+enum PlaceSyncStatus {
+  pending 
+  synced  
+  failed  
+}
+
+model Place {
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String          @db.ObjectId
+  user            User            @relation("UserToPlaces", fields: [userId], references: [id])
+  clientId        String
+  deviceId        String
+  name            String
+  nameNormalized  String
+  lat             Float
+  lng             Float
+  version         Int             @default(1)
+  isDeleted       Boolean         @default(false) 
+  status          PlaceSyncStatus @default(synced)
+  createdAt       DateTime        @default(now()) 
+  updatedAt       DateTime        @updatedAt        
+  syncedAt        DateTime?                         
+
+  @@unique([userId, clientId], name: "uniq_user_client_id")
+  @@index([userId, nameNormalized])
+  @@index([userId, updatedAt])
+}
+
+model PotentialDuplicate {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  placeIds   String[]          
+  createdAt  DateTime @default(now())
+  isDeleted  Boolean  @default(false) 
+}

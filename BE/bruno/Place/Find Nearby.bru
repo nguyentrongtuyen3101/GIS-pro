@@ -1,0 +1,16 @@
+meta {
+  name: Find Nearby
+  type: http
+}
+
+get {
+  url: {{baseUrl}}/places/getNearby/:userId/:lat/:lng/:radius
+  body: none
+}
+
+params:path {
+  userId: 665f0000000000000000aaaa
+  lat: 10.762622
+  lng: 106.660172
+  radius: 500
+}

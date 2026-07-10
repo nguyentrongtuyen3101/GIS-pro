@@ -1,0 +1,19 @@
+meta {
+  name: Delete Places
+  type: http
+}
+
+delete {
+  url: {{baseUrl}}/places/delete
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "placeIds": ["665f0000000000000000aaaa", "665f0000000000000000bbbb"]
+  }
+}

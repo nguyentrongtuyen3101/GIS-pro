@@ -1,0 +1,13 @@
+meta {
+  name: Get Potential Duplicates
+  type: http
+}
+
+get {
+  url: {{baseUrl}}/places/getpotentialduplicates/:userId
+  body: none
+}
+
+params:path {
+  userId: 665f0000000000000000aaaa
+}
