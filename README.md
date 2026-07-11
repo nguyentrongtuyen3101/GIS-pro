@@ -40,8 +40,8 @@ chạy thẳng bước tiếp theo.
 Sinh Prisma Client và đồng bộ schema xuống database:
 
 ```bash
-npx run build
-npx run push
+npm run build
+npm run push
 ```
 
 Chạy server ở chế độ dev:
