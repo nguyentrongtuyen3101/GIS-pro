@@ -18,6 +18,9 @@ dữ liệu trùng lặp.
 .
 ├── BE/      # Backend — Express + Prisma (MongoDB)
 └── FE/      # Frontend — React
+└── images/ 
+└── DECISIONS.md
+└── README.md 
 ```
 
 > Nếu cấu trúc thư mục thực tế của bạn đặt tên khác (VD `backend/`, `web/`),

@@ -1,15 +1,17 @@
 meta {
   name: Create Place
   type: http
+  seq: 1
 }
 
 post {
   url: {{baseUrl}}/places/create/:userId
   body: json
+  auth: none
 }
 
 params:path {
-  userId: 665f0000000000000000aaaa
+  userId: 6a4f2c267eafbd279a3135e3
 }
 
 headers {
@@ -18,10 +20,10 @@ headers {
 
 body:json {
   {
-    "clientId": "b3f1c9e0-4b1a-4a2e-8c3d-2f7a5e6d1234",
-    "deviceId": "phone-A1",
-    "name": "Tiny Coffee",
-    "lat": 10.762622,
-    "lng": 106.660172
+    "clientId": "07d0b8e5-708c-4f6d-8b3e-8c1f2a4d5666",
+    "deviceId": "tablet-A2",
+    "name": "CONG VIEN TAO DANG",
+    "lat": 10.779150,
+    "lng": 106.691460
   }
 }
